@@ -161,10 +161,10 @@ The reactor geometry is designed to allow modification of the insert in a real-l
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=120mm]{segments_concept.eps}\hspace{2pc} 
+\includegraphics[width=120mm]{segments.eps}\hspace{2pc} 
 \caption{\label{fig:segments} The investigated macro-patterinig designs: a) conventional reactor with homogeneous and continuous catalytic insert, b) catalytic insert divided in the radial direction (equal width of inlet surface),  c) catalytic insert divided in the radial direction  (equal area of inlet surface)}
 \end{figure}
-
+ 
 \subsection{Chemical Reactions Model}
 \label{subsec:math_model_ref}
 
@@ -186,7 +186,7 @@ The process is assumed to be dominated by three reactions, as reported in litera
 {\Delta H_{\rm{WGS}} = -41.15 \rm{\frac{kJ}{mol}}.}
 \end{multline}
 
- The reformer is supplied with a mixture of H$_2$, CO$_2$, and CH$_4$. The exact composition of the inlet gases is determined by two parameters. The first is the steam-to-carbon ratio ($SC$), defining the ratio of steam to methane at the reactor's inlet. The second parameter is the carbon-to-carbon ratio ($CC$), equal to the ratio of carbon dioxide to methane at the inlet. The process conditions are remarkably influenced by the $SC$ and $CC$ values, as the reactions' rates depend directly on the composition of the inlet gases \cite{Usman2015}. A proper setting of the values of the ratios is crucial for the prevention of the carbon deposition phenomenon \cite{Koncewicz2021}. Adverse process conditions can result in carbon particles precipitating on the catalyst surface. Thus, reducing the active surface of the catalyst, leading to its poisoning. A proper setting of the ratios and the process' temperature are proven to have the most significant influence on the alleviation of the poisoning hazard \cite{Tomiczek2017}. The enthalpy changes $\Delta H$ are taken from literature \cite{Pajak2018, Mazhar2021}. Knowledge of their rates is essential to allow the inclusion of the reactions into the model. According to the research conducted by Brus et al. \cite{Brus2012}, the effective rate of MSR and DRY reactions can be expressed with a common equation:
+ The reformer is supplied with a mixture of H$_2$, CO$_2$, and CH$_4$. The composition of the feedstock is determined the steam-to-carbon ratio ($SC$) parameter, defining the ratio of steam to methane provided at the reactor's inlet. The process conditions are remarkably influenced by the $SC$ value, as the reactions' rates depend directly on the composition of the inlet gases \cite{Usman2015}. A proper setting of the $SC$ is crucial for the prevention of the carbon deposition phenomenon \cite{Koncewicz2021}. Adverse process conditions can result in carbon particles precipitating on the catalyst surface \cite{Kaczmarczyk2021}. A proper setting of the ratios and the process' temperature are proven to have the most significant influence on the alleviation of the poisoning hazard \cite{Tomiczek2017}. The enthalpy changes $\Delta H$ are taken from literature \cite{Pajak2018, Mazhar2021}. Knowledge of their rates is essential to allow the inclusion of the reactions into the model. According to the research conducted by Brus et al. \cite{Brus2012}, the effective rate of MSR and DRY reactions can be expressed with a common equation:
 
 \begin{equation}
 \label{eq:rate_eff}
@@ -208,7 +208,7 @@ R_{\rm{DRY}} = R_{\rm{eff}}\frac{p_{\rm{CO_2}}}{p_{\rm{CO_2}} + p_{\rm{H_2O}}}.
 
 \vspace{3mm}
  
-The reforming reaction is reported to occur rather slowly \cite{Brus2012JPCS}. However, the WGS reaction has a more unpredictable nature \cite{Nagata2001}. Thus, the preparation of a formula, returning proper values regardless of the process conditions, is not feasible. According to Ahmed and F\"{o}ger, the WGS reaction can be assumed to maintain equilibrium under specific conditions \cite{Ahmed2001}. The equilibrium assumption has been successfully applied in other numerical analyses \cite{Song2005, Iwai2011, Sciazko2014IJHE}. The assumption also meets a good agreement between the calculations and the experimental data \cite{Brus2012IJHE, Sciazko2013, Sciazko2014JPS}. Taking into account the provided literature review, the WGS reaction is assumed to be in the equilibrium state in the presented analysis. The process conditions are designed to satisfy the equilibrium assumption. Following the statements, CO, CO$_{2}$, H$_{2}$ and H$_{2}$O have to satisfy the equilibrium equation, expressed by the following formula:  
+The reforming reaction is reported to occur rather slowly \cite{Brus2012JPCS}. However, the WGS reaction has a more unpredictable nature \cite{Nagata2001}. Thus, the preparation of a formula, returning proper values regardless of the process conditions, is not feasible. According to Ahmed and F\"{o}ger, the WGS reaction can be assumed to maintain equilibrium under specific conditions \cite{Ahmed2001}. The equilibrium assumption has been successfully applied in other numerical analyses \cite{Iwai2011, Sciazko2014IJHE, Peng2022}. The assumption also meets a good agreement between the calculations and the experimental data \cite{Brus2012IJHE, Sciazko2013, Sciazko2014JPS}. Taking into account the provided literature review, the WGS reaction is assumed to be in the equilibrium state in the presented analysis. The process conditions are designed to satisfy the equilibrium assumption. Following the statements, CO, CO$_{2}$, H$_{2}$ and H$_{2}$O have to satisfy the equilibrium equation, expressed by the following formula:  
 
 \begin{equation} 
 \label{eq:K_WGS}
@@ -224,7 +224,7 @@ The WGS reaction rate can be further expressed using Eq. \eqref{eq:rate_WGS1}:
 R_{\rm{WGS}} = k_{\rm{WGS}}^+ p_{\rm{CO}}p_{\rm{H_2O}} + k_{\rm{WGS}}^- p_{\rm{H_2}}p_{\rm{CO_2}}.
 \end{equation}
 
-The value of $R_{\rm{WGS1}}$ can be acquired through the analysis of the reforming process stoichiometry and balancing the chemical species \cite{Pajak2018, Brus2014}. Balancing the reaction's stoichiometry allows for the calculation of the partial pressures included in Eq. \eqref{eq:K_WGS}, leading to the relation describing the WGS reactions' rate (Eq. \eqref{eq:WGS_rate_ini}) \cite{Brus2012}.
+The value of $R_{\rm{WGS}}$ can be acquired through the analysis of the reforming process stoichiometry and balancing the chemical species \cite{Brus2014, Wolf2021}.  Balancing the reaction's stoichiometry allows for the calculation of the partial pressures included in Eq. \eqref{eq:K_WGS}, leading to the relation describing the WGS reactions' rate (Eq. \eqref{eq:WGS_rate_ini}) \cite{Brus2012}.
 
 \begin{equation}
 \label{eq:WGS_rate_ini}
@@ -233,7 +233,29 @@ R_{\rm{WGS}} = \frac{n^{\rm{outlet}}_{\rm{CH_4}}}{V} = \frac{n^{\rm{inlet}}_{\rm
 
 \vspace{3mm}
 
-After connecting Eq. \eqref{eq:ch4_conv} with Eq. \eqref{eq:WGS_rate_ini} and applying simple mathematical transformations, a final expression for the WGS reaction's rate is formed:
+ Following, the methane conversion rate $xcr$ and carbon monoxide conversion rate $ycr$ can be specified with:
+
+\begin{equation}
+\label{eq:ch4_conv}
+xcr = 1 - \frac{n^{\rm{inlet}}_{\rm{CH_4}} - R_{\rm{MSR}}V}{n^{\rm{inlet}}_{\rm{CH_4}}},
+\end{equation}
+
+\begin{equation}
+\label{eq:co_conv}
+ycr = \frac{K_{\rm{WGS}} + 3xcr - \sqrt{\chi - \omega}}{2(K_{\rm{WGS}} - 1)},
+\end{equation}
+
+\noindent where:
+
+\begin{equation}
+\chi = (K_{\rm{WGS}}SC+3xcr)^2,
+\end{equation}
+
+\begin{equation}
+\omega = 4K_{\rm{WGS}}xcr(K_{\rm{WGS}} - 1)(SC - xcr).
+\end{equation}
+
+Coupling Eq. \eqref{eq:ch4_conv} with Eq. \eqref{eq:WGS_rate_ini} and applying simple mathematical transformations results in the formulation of a final expression for the WGS reaction's rate:
 
 \begin{equation}
 \label{eq:rate_WGS}
@@ -257,7 +279,31 @@ Q_{\rm{DRY}} = -\Delta H_{\rm{DRY}}R_{\rm{DRY}},
 Q_{\rm{WGS}} = -\Delta H_{\rm{WGS}}R_{\rm{WGS}}.
 \end{equation}
   
-\begin{table}
+\vspace{\fill}
+
+\subsection{Heat and Mass Transfer Model}
+\label{subsec:heat_model}
+
+The fundamental transport equations are incorporated into the mathematical model. Considering the computational domain defined for the needs of the analysis, the equations are implemented for two dimensions. Therefore, the model's equations are solved along the axis and radius of the reactor's geometry. The volume-averaging method was chosen for the derivation of the governing equations implemented in the model used for this analysis. The process parameters are locally averaged for each representative volume and included in the mathematical formulas \cite{Carbonell1984}. Values of continuity \linebreak (Eq. \eqref{eq:continuity}), mass transfer (Eq. \eqref{eq:mass}), momentum (Eqs. \eqref{eq:velocity_x} and \eqref{eq:velocity_r}) and energy equations (Eq. \eqref{eq:energy}) characterize the transport phenomena occurring during the reforming process. The equations are derived for the laminar flow. The analyzed fluids are considered to be Newtonian and incompressible. Thus, the continuity equation takes the following form \cite{Nishino2003, Nishino2006}: 
+
+\begin{equation}
+\label{eq:continuity}
+ \frac {\partial \left( \rho_0 U_x  \right) }{\partial x}+\frac {1}{r} \frac {\partial \left(  r \rho_0 U_r  \right) }{\partial r}=0,
+\end{equation}
+
+\vspace{3mm}
+  
+ The species conservation is calculated using molar fractions of species taking part in the reaction (Equation \eqref{eq:mass}). The formulated equation is derived from Fick's law of diffusion~\cite{Mozdzierz2018}. The mass sources and sinks $S_j$ depend on the MSR, DRY, and WGS rates and molar masses of the species taking part in the reaction~\cite{Mozdzierz2014, Tan2018}.  The exact equations defining the values of $S_j$ are described in Table \ref{tab:mass_source}. 
+   
+\begin{eqnarray} 
+\label{eq:mass}
+\begin{multlined}
+ \rho_0   \left( U_x \frac{\partial  Y_{j}}{\partial x} +   U_r \frac{\partial  Y_{j}}{\partial r} \right) = \frac {\partial}{\partial x} \left( \rho_0 D_{j, \rm{eff}}  \frac{\partial  Y_{j}}{\partial x} \right) \\
+ + \frac{1}{r} \frac {\partial}{\partial r} \left( r \rho_0 D_{j, \rm{eff}}  \frac{\partial  Y_{j}}{\partial r} \right) + S_{j}.
+ \end{multlined}
+ \end{eqnarray}
+ 
+ \begin{table}
 \renewcommand{\arraystretch}{1.7}
 \caption{Mass sources/sinks}
 \label{tab:mass_source}       
@@ -293,29 +339,7 @@ $-R_{\rm{WGS}}M_{\rm{H_2O}}$ \\
 \end{tabular}
 \end{table}
 
-\vspace{\fill}
 
-\subsection{Heat and Mass Transfer Model}
-\label{subsec:heat_model}
-
-The fundamental transport equations are incorporated into the mathematical model. Considering the computational domain defined for the needs of the analysis, the equations are implemented for two dimensions. Therefore, the model's equations are solved along the axis and radius of the reactor's geometry. The volume-averaging method was chosen for the derivation of the governing equations implemented in the model used for this analysis. The process parameters are locally averaged for each representative volume and included in the mathematical formulas \cite{Carbonell1984}. Values of continuity \linebreak (Eq. \eqref{eq:continuity}), mass transfer (Eq. \eqref{eq:mass}), momentum (Eqs. \eqref{eq:velocity_x} and \eqref{eq:velocity_r}) and energy equations (Eq. \eqref{eq:energy}) characterize the transport phenomena occurring during the reforming process. The equations are derived for the laminar flow. The analyzed fluids are considered to be Newtonian and incompressible. Thus, the continuity equation takes the following form \cite{Nishino2003, Nishino2006}: 
-
-\begin{equation}
-\label{eq:continuity}
- \frac {\partial \left( \rho_0 U_x  \right) }{\partial x}+\frac {1}{r} \frac {\partial \left(  r \rho_0 U_r  \right) }{\partial r}=0,
-\end{equation}
-
-\vspace{3mm}
-  
- The species conservation is calculated using molar fractions of species taking part in the reaction (Equation \eqref{eq:mass}). The formulated equation is derived from Fick's law of diffusion~\cite{Mozdzierz2018}. The mass sources and sinks $S_j$ depend on the MSR, DRY, and WGS rates and molar masses of the species taking part in the reaction~\cite{Mozdzierz2014, Tan2018}.  The exact equations defining the values of $S_j$ are described in Table \ref{tab:mass_source}. 
-   
-\begin{eqnarray} 
-\label{eq:mass}
-\begin{multlined}
- \rho_0   \left( U_x \frac{\partial  Y_{j}}{\partial x} +   U_r \frac{\partial  Y_{j}}{\partial r} \right) = \frac {\partial}{\partial x} \left( \rho_0 D_{j, \rm{eff}}  \frac{\partial  Y_{j}}{\partial x} \right) \\
- + \frac{1}{r} \frac {\partial}{\partial r} \left( r \rho_0 D_{j, \rm{eff}}  \frac{\partial  Y_{j}}{\partial r} \right) + S_{j}.
- \end{multlined}
- \end{eqnarray}
  
 
 The effective mass diffusivity of species $D_{j\rm{eff}}$ was calculated using the equation explained below (Eq. 
@@ -393,7 +417,7 @@ The energy conservation equation (Eq. \eqref{eq:energy}) describes the process o
 Due to the application of metallic foam, a proper relation describing the $\lambda_{\rm{eff}}$ of the material is essential \cite{Bhattacharya2002}.  The model chosen for calculating the value of the $\lambda_{\rm{eff}}$ was proposed by Boomsma and Poulikakos and further corrected by Dai et al. \cite{Boomsma2001, Dai2010}. The outcome relation allows for the derivation of equations describing the thermal conductivity of metallic foams. According to the literature review, an adequate model including the morphology of metallic foams is prepared \cite{Pajak2021IJHEa}.
  
 \begin{equation}
-\label{eq:eff_cond}
+\label{eq:eff_cond} 
 \lambda_{\rm{eff}}=\frac{\sqrt{2}l}{2(R_{\rm{A}}+R_{\rm{B}}+R_{\rm{C}}+R_{\rm{D}})},
 \end{equation}
 
@@ -404,11 +428,206 @@ Due to the application of metallic foam, a proper relation describing the $\lamb
 \section{Numerical model}
 \label{sec:num_model}
 
-Application of an appropriate alloy may fulfill all of the requirements regarding the foam's catalytic activity, diffusional, and thermal properties \cite{Abaidi2021, Jadhav2021}. The reforming process characterizes itself with values of the temperature established at levels differentiating from approximately 500$\degree$ C to 1100$\degree$ C \cite{Brus2012, Wang2009}. The process conditions reducing the number of possible choices of the metallic foam alloys \cite{Seo2002, Cverna2002}. The selection is further narrowed by a requirement of reaction suppression while entering a non-catalytic zone of the insert. Therefore, the chosen material has to withstand the adverse thermal conditions, at relatively high temperatures, and demonstrate inferior catalytic activity during the reforming process. According to the literature, stainless steel foam could be a suitable choice. The stainless steel foam provides appropriate thermal properties at the described conditions \cite{Zhao2004, Smith2012}. The catalytic activity reported for the stainless steel is several orders of magnitude lower when compared with the conventional catalyst materials \cite{Hecht2005, Jones2008, Simson2009, Wang2020}. 
+To solve systems of the defined equations a discretization of the previously prepared continuous computational domain is necessary. The numerical model is prepared using the Finite Volume Method \cite{Moukalled2016}.  A uniform computational grid with evenly spaced nodes is formed, to assure a minimal complexity of the calculations, \cite{Kaw2011}. The grid's dimensions are established at 150 elements in the longitudinal and 25 elements in the radial directions, resulting in square-shaped elements. A single grid sector is presented in Fig. \ref{fig:grid} 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=180mm]{grid.eps}\hspace{2pc} 
+\caption{\label{fig:grid} Numerical grid implemented in the analysis}
+\end{figure}
+
+\subsection{Transport Equations}
+\label{sec:trans_eqs}
+
+Integration of the fundamental transport equations of the reforming process over the created control volumes is conducted \cite{Patankar1980}.  The partial differential equations covering the species conservation (Eq. \eqref{eq:mass}),  the momentum conservation equation (Eqs. \eqref{eq:velocity_x} - \eqref{eq:velocity_r}), and the energy conservation equation (Eq. \eqref{eq:energy}) may be described in a generalized form \cite{Patankar1980}, as follows: 
 
 
+\begin{equation}
+\label{eq:general}
+\varPsi_x \dfrac{\partial \phi}{\partial x} + \varPsi_r \dfrac{\partial \phi}{\partial r} = \dfrac{\partial}{\partial x} \left( \varGamma \dfrac{\partial \phi}{\partial x} \right) + \dfrac{1}{r} \dfrac{\partial}{\partial r} \left( r \varGamma \dfrac{\partial \phi}{\partial r} \right) + \overline{S}.
+\end{equation}
+\hspace{\fill}
 
-The reactor's axial symmetry implies the application of the symmetry boundary condition at the symmetry axis \cite{Patankar1980}. The mathematical model can be simplified, relying on the assumption that transport and chemical phenomena occur in an identical manner around the reactor's axis. 
+The Eq. \eqref{eq:general} is prepared to allow substitution of any dependant variable $\phi$. The coefficients on the left side of the Eq. \eqref{eq:general}, $\varPsi_x$ and $\varPsi_r$ describe the convective terms in $x$ and $r$ directions and may be substituted accordingly to the use case. The diffusive terms, represented by $\varGamma$, are placed on the right-hand side of the equation, along with the source terms $\overline{S}$.  The corresponding terms and coefficients are summarized in Tab. \ref{tab:coeff}. The source terms $\overline{S}$ values regard the catalytic segments only. The reaction is assumed to be put to a halt for the non-catalytic region of the insert. Therefore, no heat and mass production nor consumption is predicted for the metallic foam segments.
+ 
+\begin{table}
+\caption{Coefficients and terms for substitution in Eq. \eqref{eq:general}}
+\label{tab:coeff}
+\begin{tabular}{l|c|c|c|c|c}
+\hline\noalign{\smallskip}
+Eq. & $\phi$ & $\varPsi_x$ & $\varPsi_r$ & $\varGamma$ & $\overline{S}$  \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+(\ref{eq:mass}) & $Y_j$ & $\rho_0 U_x$ & $\rho_0 U_r$ & $\rho_0 D_{j,\rm{eff}}$ & $S_j$ \\
+(\ref{eq:velocity_x}) & $U_x$ & $\dfrac{\rho_0}{\varepsilon^2_0} U_x$ & $\dfrac{\rho_0}{\varepsilon^2_0} U_r$ & $\dfrac{\mu}{\varepsilon_0}$ & $-\dfrac{\partial P}{\partial x} - \dfrac{\mu}{K_{\rm{p}}} U_x - \dfrac{\rho_0 c_{\rm{ine}}}{\sqrt{K_{\rm{p}}}} U_x \sqrt{U^2_x+U^2_r}$ \\
+(\ref{eq:velocity_r}) & $U_r$ & $\dfrac{\rho_0}{\varepsilon^2_0} U_r$ & $\dfrac{\rho_0}{\varepsilon^2_0} U_r$ & $\dfrac{\mu}{\varepsilon_0}$ & $-\dfrac{\partial P}{\partial r} - \dfrac{\mu}{K_{\rm{p}}} U_r - \dfrac{\rho_0 c_{\rm{ine}}}{\sqrt{K_{\rm{p}}}} U_r \sqrt{U^2_x+U^2_r} - \dfrac{\mu U_r}{\varepsilon_0 r^2}$ \\
+(\ref{eq:energy}) & $T$ & $\rho_0 C_{\rm{p}} U_x$ & $\rho_0 C_{\rm{p}} U_r$ & $\lambda_{\rm{eff}}$ & $Q_{\rm{s}}$ \\
+
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+
+\subsection{Coaxial segments configuration}
+
+The reactor has been divided into five concentric segments, constituting four hollow cylinders and a core. The segments may take one of two configurations. The first one predicts equal width of the inlet and outlet surfaces, while the second configuration predicts an equal area of inlet and outlet surfaces. The two possible setups are summarized in Fig. \ref{fig:inlet_rings}.  
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=120mm]{reactor_inlet_surface.eps}\hspace{2pc} 
+\caption{\label{fig:inlet_rings} The coaxial segments configurations: a) equal width of rings, b) equal inlet and outlet surface}
+\end{figure}
+
+The exact dimensions of the particular rings for Fig. \ref{fig:inlet_rings} b) are calculated using the system of equations \eqref{eq:rings}, as follows:
+
+\begin{equation}
+\centering
+\label{eq:rings}
+\begin{cases}
+	2\pi r_1^2 = \frac{2}{5}\pi R^2 \\
+	2\pi \left(r_2^2 - r_1^2 \right) = \frac{2}{5}\pi R^2 \\
+	2\pi \left(r_3^2 - r_2^2 \right) = \frac{2}{5}\pi R^2 \\
+	2\pi \left(r_4^2 - r_3^2 \right) = \frac{2}{5}\pi R^2 \\
+	2\pi \left(r_5^2 - r_4^2 \right) = \frac{2}{5}\pi R^2	
+\end{cases}
+\end{equation}
+
+\vspace{3mm}
+
+The values resulting from solving the Eqs. \eqref{eq:rings} are presented in Tab. \ref{tab:rings_radius}.  
+
+
+\begin{table}[h]
+\centering
+\caption{Rings' dimensions}
+\label{tab:rings_radius}
+\begin{tabular}{c||c|c}
+\hline\noalign{\smallskip}
+Radius & Equal width (cm) & Equal surface (cm) \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+r$_1$ & 1 & $\sqrt{5}$ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+r$_2$ & 2 & $\sqrt{10}$  \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+r$_3$ & 3 & $\sqrt{15}$  \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+r$_4$ & 4 & $2\sqrt{5}$ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+r$_5$ & 5 & 5 \\
+\noalign{\smallskip}\hline
+\end{tabular}
+
+\end{table}
+
+The computational domain is indicated with the red dashed line (Fig. \ref{fig:comp_domain}). Segments can be described with the following parameters - porosity, average pore size, as well as their catalytic properties, which are directly correlated to the porosity value. The analyzed model is steady and the flow of gases is assumed to be laminar and occurring in one direction. Fluids taking part in the process are assumed to be Newtonian. The presented numerical analysis is a quasi-three-dimensional case. Due to the axial symmetry of the reactor's tube, a computational domain can be constrained to a two-dimensional cross-section of the reformer. Implementation of proper boundary conditions allows assuming the process occurs in the same manner throughout the reactor's whole volume \cite{Patankar1980}. 
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=120mm]{domain.eps}\hspace{2pc} 
+\caption{\label{fig:comp_domain} Quasi 3-dimensional computational domains for the rings configurations}
+\end{figure}
+
+\subsection{Boundary Conditions and Materials}
+\label{sec:boundary}
+
+To complete the preparation of the numerical analysis, setting the properties of the materials and the boundary conditions is vital. Proper setting of $\textit{SC}$ value is essential for this analysis, due to the threat of carbon deposit formation \cite{Bartholomew1982}. If the ratios are chosen incorrectly, the carbon deposition phenomenon may occur, poisoning the reactor's catalyst \cite{Lakhapatri2009}. Choosing an appropriate steam-to-carbon ratio allows for avoiding the described hazard. The value of \textit{SC} for this analysis was set to be equal to 2.0 [-], preventing this occurrence \cite{Brus2015, Tomiczek2017}. The catalyst insert's segments are assumed to consist of one of two materials. The first material is a catalytic composite of nickel and yttria-stabilized-zirconia (Ni/YSZ). The second material, serving the purpose of heat transport medium, is chosen to be steel foam. The metallic foam segments are introduced for the unification of the temperature distribution inside the reactor.  Suppression of the reforming reaction, combined with a considerable heat exchange surface for foams, is expected to let the gases mixture reheat effectively \cite{Zhao2012}. The value of $\lambda_{\rm{solid}}$ is set at 22 W m$^{-1}$ K$^{-1}$ for the catalytic material \cite{Kawashima1996}, while the value of $\lambda_{\rm{solid}}$ for the steel foam is established at 30 W m$^{-1}$ K$^{-1}$ \cite{Peet2011}. The dimensionless cubic node length $e$ is set to be equal to 0.0339, as explained by Boomsma and Poulikakos \cite{Boomsma2001}.  The temperature of the fuel flowing inside the unit is considered to reach the temperature of the reformer instantly. The symmetry boundary conditions are set at the symmetry axis, while the no-slip boundary condition is applied at the wall of the reformer. The boundary conditions necessary for the solution of the governing equations are summarized below.
+
+\subsection*{Thermal Boundary Conditions}
+\begin{itemize}
+  \item inlet temperature $T = T_{\rm{in}} = 900$ K \hspace*{\fill} \hfill at $x = 0$ and $0 \leq r < R$,
+  \item outlet temperature $\partial T / \partial x = 0$ \hspace*{\fill} \hfill at $x = L$ and $0 \leq r < R$,
+  \item symmetry boundary condition $\partial T / \partial r = 0$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = 0$,
+  \item wall heat flux $\partial T / \partial r =  const$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = R$.
+\end{itemize}
+
+The thermal boundary condition set at the reactor's wall is chosen to be of a second type. Constant heat flux is assumed on the reactor's wall, and the wall itself is the medium for heat exchange between the reactor and the system boundaries. The wall thickness is set to be equal to 0.001 m and is assumed to consist of the same material as the metallic foams. Thus, the value of $\lambda_{\rm{solid}}$ for the reactor's wall is equal to  30 W m$^{-1}$ K$^{-1}$ \cite{Peet2011}. The boundary conditions essential for the calculation of the species conservation equations are presented below. 
+
+\subsection*{Mass Transport Boundary Conditions}
+\begin{itemize}
+  \item inlet mole fractions $Y_j = Y_{j,\rm{in}}$ \hspace*{\fill}  at $x = 0$ and $0 \leq r < R$,
+  \item outlet mole fractions $\partial Y_j / \partial x = 0$ \hspace*{\fill} \hfill at $x = L$ and $0 \leq r < R$,
+  \item symmetry boundary condition $\partial Y_j / \partial r = 0$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = 0$,
+  \item no-slip boundary condition $Y_j = 0$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = R$.
+\end{itemize}
+
+To complete the numerical model's setting, the boundary conditions for solving the momentum conservation equations are needed. The conditions are applied in the manner listed below. 
+
+\subsection*{Momentum Boundary Conditions}
+\begin{itemize}
+  \item inlet velocity $U = U_{\rm{in}} = 0.15$ m s$^{-1}$ \hspace*{\fill} \hfill at $x = 0$ and $0 \leq r < R$,
+  \item outlet velocity $\partial U / \partial x = 0$ \hspace*{\fill} \hfill at $x = L$ and $0 \leq r < R$,
+  \item symmetry boundary condition $\partial U / \partial r = 0$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = 0$,
+  \item no-slip boundary condition $U = 0$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = R$.
+\end{itemize}
+
+All of the boundary conditions are summarized in Fig. \ref{fig:boundary}.
+
+\begin{figure}
+\centering
+\includegraphics[width=120mm]{boundary.eps}
+\caption{\label{fig:boundary}Boundary conditions applied in the analysis} 
+\end{figure}
+
+\section{Genetic algorithm}
+
+The conducted optimization includes the application of an evolutionary algorithm, to define the optimal design of the catalytic insert for the coaxial segments. The genetic algorithm (GA) is selected to be the optimization procedure used for the needs of the analysis. The algorithm analyses subsequent, finite populations of test specimens, which parameters are inherited from the specimens acquiring the best results in the preceding generation. The results are evaluated by user-defined fitness functions \cite{Tai2022}. The functions are exclusive to a certain problem. If more than one function is defined, the functions have to be combined into a single value, which will be further processed by the genetic algorithm itself \cite{Goldberg1989}. The remaining part of the genetic algorithm operation is the mutation procedure. The mutation is used as an additional procedure for preventing the local extremum trap and a measure for the introduction of genes that were not present in the initial population or are just not possible to acquire on the way of the crossover procedure \cite{Raja2017}. Coupling of the prepared numerical anlysis with the algorithm requires proper parametrization of reactor parameters \cite{Goldberg1989}. The catalyst insert is set to contain 5  coaxial segments. Each of the segments is assumed to consist of either a catalytic composite of nickel with yttria-stabilized-zirconia (Ni/YSZ) or a stainless steel foam \cite{Pajak2021IJHEa}. The insert regions may differ in their morphological parameters regardless of the constituting material. The parameters altered by the algorithm are segment catalytic character, porosity $\varepsilon$ and average pore diameter $d_{\rm{p}}$. The porosity values available for application in the analysis are constrained to the range between 0.5 and 0.8. The lower boundary is set at 0.5, as lower porosity values resulted in over-significant pressure drops during the preliminary calculations.  The choice of 0.8 as the upper boundary is motivated by lower accessibility to the manufacturing methods determined for metallic foams of higher porosities \cite{Banhart2001}.  The average pore diameters $d_{\rm{p}}$ are calculated for each segment, based on the values of the porosity \cite{Pajak2021IJHEa}. The upper boundary of the $d_{\rm{p}}$ range is restricted by the model conditions. According to the volume-averaging method, the size of a single pore is not allowed to exceed the size of a single numerical grid element. Therefore, the upper boundary is limited to 0.002 m \cite{Carbonell1984} Furthermore, segment porosity $\varepsilon$ has a direct influence on the catalyst density. The catalyst density $\dot{w}_{\rm{cat}}$ is calculated using Eq. \eqref{eq:cat_dens}:
+
+\begin{equation}
+\label{eq:cat_dens}
+\dot{w}_{\rm{cat}} = \rho_{\rm{cat}} \cdot (1-\varepsilon_{\rm{0}}),
+\end{equation}
+
+\noindent where $\rho_{\rm{cat}}$ is equal to $5.3448 \cdot 10^6$ g m$^{-3}$. The chemical reaction kinetics model derived for the implemented numerical simulation regards a Ni/YSZ composite with a 60:40 Ni to YSZ ratio \cite{Pajak2021IJHEa}. Nickel serves the catalytic purpose, while YSZ serves as a scaffold. Therefore, the basic catalyst density for the Ni/YSZ element should be calculated concerning the ratio of the materials. The solid nickel density equals to $8.908 \cdot 10^6$ g m$^{-3}$ \cite{Everhart2012}. The value of $\rho_{\rm{cat}}$ is calculated by applying the given ratio to the value of the solid nickel density \cite{Pajak2021IJHEa}.  The definition of the relations allows commencing the operation of the GA. The algorithm starts its operation with the preparation of the initial generation, with the specimens' parameters fully randomized. First, the segments' character is randomized. The algorithm is expected to generate catalytic and non-catalytic segments in a ratio of 50:50, as the randomization procedure uses a uniform distribution for its seed \cite{Jerrum1986}.  When the specific segment's character is determined, the algorithm randomizes its porosity  $\varepsilon$ and average pore size $d_{\rm{p}}$ values. As the final initialization step, the GA calculates the catalyst density for each of the segments designated to consist of Ni/YSZ composite. Having defined the initial parameters, the reforming simulation code is executed for each of the generated reactors.  The overall operation of the algorithm prepared for the needs of the research is presented in Fig. \ref{fig:ga}. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=120mm]{block_ga.eps}\hspace{2pc}
+\caption{\label{fig:ga} Summary of the genetic algorithm procedure}
+\end{figure}
+
+The conducted investigation regards optimization of the temperature field distribution inside the reactor, simultaneously maintaining a considerable methane conversion rate \cite{Pajak2021IJHEb}. Therefore, the research is considered a multi-objective optimization, as the fitness analysis is required to investigate two separate factors. The first factor is temperature distribution. The main objective is to reduce the temperature gradients occurring throughout the reactor's volume during the reaction. The strong endothermic character of the process has a consequence in large temperature decreases in the regions in which the fuel concentration is significant. The constant transition of the temperature field leads to the establishment of thermal stresses, leading to premature degradation of the catalyst material \cite{Pajak2021Energies}.  The presented research predicts the search for an optimal distribution of catalytic and non-catalytic segments and proper selection of their porosity $\varepsilon$ and average pore size $d_{\rm{p}}$.  The first function $f_{\rm{CH_4}}$ regards the methane conversion rate. The fuel conversion rate is calculated using the molar fractions of the methane at the inlet and the outlet of a specific reactor. The $f_{\rm{CH_4}}$  value is calculated using Eq. \eqref{eq:fit_CH4}:
+
+\begin{equation}
+\label{eq:fit_CH4}
+	f_{\rm{CH_4}} = \frac{(frac_{\rm{CH_{4in}}} - frac_{\rm{CH_{4out}}})}{frac_{\rm{CH_{4in}}}},
+\end{equation}
+
+The remaining fitness function $f_T$ evaluates the extent of the unification of the temperature distribution inside the catalytic insert. Essentially, the thermal fitness objective is to find the $\Delta T$ value, being a representative temperature difference for a specific reactor. To assure reliability and accuracy of the mathematical formula, the thermal fitness is established to perform the temperature distribution analysis for each of the grid elements separately \cite{Pajak2021IJHEb}. The algorithm iterates through each of the created control volumes and calculates the temperature difference between the central node $T_{\rm{P}}$ and each of the neighboring control volumes $T_{\rm{N}}$, $T_{\rm{E}}$, $T_{\rm{S}}$, $T_{\rm{W}}$ (Fig. \ref{fig:f_T}). Further, each of the control volumes has its specific temperature difference $\Delta T_{\rm{loc}_{\textit{i,j}}}$ assigned. The $\Delta T_{\rm{loc}_{\textit{i,j}}}$ value is chosen to be the highest temperature difference among the values calculated for each of the neighboring control volumes. The $\Delta T_{\rm{loc}_{\textit{i,j}}}$ for each of the cells is based on the following formula: 
+
+\begin{eqnarray} 
+\label{eq:DT_loc}
+\begin{multlined}
+\Delta T_{{\rm{loc}}_{i,j}} = \\ {\rm{max}}\left\{|T_{{\rm{P}}_{i,j}} - T_{{\rm{N}}_{i,j}}|, |T_{{\rm{P}}_{i,j}} - T_{{\rm{E}}_{i,j}}|, |T_{{\rm{P}}_{i,j}} - T_{{\rm{S}}_{i,j}}|, |T_{{\rm{P}}_{i,j}} - T_{{\rm{W}}_{i,j}}|\right\}.
+ \end{multlined}
+ \end{eqnarray}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=130mm]{thermal_fitness.eps}\hspace{2pc}
+\caption{\label{fig:f_T} Temperature field evaluation strategy}
+\end{figure}
+
+Having computed the set of the $\Delta T_{\rm{loc}_{\textit{i,j}}}$ for the whole numerical grid, the algorithm selects the highest value among computed $\Delta T_{{\rm{loc}}_{i,j}}$ and saves it as a global $\Delta T$ value representing a specific reactor (Eq. \eqref{eq:DT}).
+
+\begin{equation}
+\label{eq:DT}
+\Delta T = {\rm{max}}\left\{ T_{{\rm{loc}}_{1,1}}, T_{{\rm{loc}}_{1,2}}, ... , T_{{\rm{loc}}_{i,j}}\right\},
+\end{equation}
+
+\noindent where $i$ and $j$ indices represent the numerical grid's dimensions. The final thermal fitness value $f_T$ is computed using the following formula: 
+
+\begin{equation}
+f_T = 1 - \frac{\Delta T}{\Delta T_{\rm{max}}},
+\label{eq:T_fit}
+\end{equation}
+
+\noindent where $\Delta T_{\rm{max}}$ stands for the highest temperature difference value reported for a single generation. The acquired $f_{\rm{CH_4}}$ and $f_T$ values are further combined into a single fitness value $f$, using the weighted-sum method \cite{Zitzler1999}:
+
+\begin{equation}
+\label{eq:fitness}
+f = \sum_{i = 1}^{N} w_{i}f_{i}.
+\end{equation}
+
+\noindent where $N$ represents the number of the specimens. The weights $w_{i}$ are established at 0.2, 0.4, 0.5, 0.6, and 0.8. Each of the analyses being carried out applied each of the weights to both of the fitness functions to allow the conduction of a sensitivity analysis, depending on the assumed importance of the defined fitness functions. The conducted numerical investigation includes a search for an optimal arrangement of coaxial segments, simultaneously performing a sensitivity analysis of the weights applied for the fitness calculation.
 
 \clearpage
 \section{Numerical analysis}
@@ -1057,22 +1276,16 @@ The reactor's axial symmetry implies the application of the symmetry boundary co
 
 \section{Conclusions}
 
+The conducted numerical investigation regards radial segmentation of the catalyst insert. Two different configurations of coaxial segments are proposed. The radial segments may either have equal widths of the inlet surfaces or equal areas of the inlet surfaces. Each of the possible segment configurations' performance is tested against five different sets of fitness function weights. The weight sensitivity analysis is conducted to assure the best possible practices during future numerical analyses of the macro-patterned reforming reactor design optimization. Analyzing the results leads to the following conclusions:
 
-%% The Appendices part is started with the command \appendix;
-%% appendix sections are then done as normal sections
-%% \appendix
+\begin{itemize}
+\item [1.] Fitness weights set at 0.4 for the methane conversion and 0.6 for thermal fitness tend to deliver better results, compared with the remaining algorithms.  
+\item[2.] Radial segments with equal widths of the inlet surface return results of a higher quality than radial segments with equal areas of the inlet surfaces (Strategy III \& V).
+\item[3.] The highest values of hydrogen productivity are acquired for the reactor with equal width of inlet surfaces (Strategy IV),  proving it to be the most valid approach to the optimization of the catalytic insert design.
+\item[4.] The introduction of the macro-patterning concept is proven to enhance the effectiveness of the reforming reaction. The hydrogen productivity is almost tripled for the best solution when compared with the reference case.
+\end{itemize}
 
-%% \section{}
-%% \label{}
-
-%% For citations use: 
-%%       \citet{<label>} ==> Jones et al. [21]
-%%       \citep{<label>} ==> [21]
-%%
-
-%% If you have bibdatabase file and want bibtex to generate the
-%% bibitems, please use
-%%
+The conducted research indicates the influence of altering the steam reforming thermal conditions on the overall process proceeding. The possible improvement of the process effectiveness on the unification of the temperature distribution is confirmed. The proposed macro-patterning concept proves the possibility of acquiring even higher methane conversion rates, using the same amount of catalyst as in the case of the reference case. However, the macro-patterned reactors would have to suffer in the compactness, as to acquire the exact level of conversion, a slight extension of their dimensions is required. The enlargement of the reactors is whatsoever not a tremendous drawback, when considering the possible elongation of the unit's lifetime, due to the reduction of the thermal stresses magnitude. 
 
 \clearpage
 
@@ -1082,14 +1295,11 @@ The reactor's axial symmetry implies the application of the symmetry boundary co
 %% else use the following coding to input the bibitems directly in the
 %% TeX file.
 
-\begin{thebibliography}{00}
 
 %% \bibitem[Author(year)]{label}
 %% Text of bibliographic item
 
 %\bibitem[ ()]{}
-
-\end{thebibliography}
 \end{document}
 
 \endinput

@@ -32,8 +32,33 @@ Based on the conducted literature review and analysis of the current state of th
 
 
 
+
 %%%%%%%%%%%%%%%%%%%% MATH MODEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The method of volume averaging is applied to compose the governing equations, as a flow through porous media is considered \cite{Whitaker1999, Brus2014}.
+
+
+
+Application of an appropriate alloy may fulfill all of the requirements regarding the foam's catalytic activity, diffusional, and thermal properties \cite{Abaidi2021, Jadhav2021}. The reforming process characterizes itself with values of the temperature established at levels differentiating from approximately 500$\degree$ C to 1100$\degree$ C \cite{Brus2012, Wang2009}. The process conditions reducing the number of possible choices of the metallic foam alloys \cite{Seo2002, Cverna2002}. The selection is further narrowed by a requirement of reaction suppression while entering a non-catalytic zone of the insert. Therefore, the chosen material has to withstand the adverse thermal conditions, at relatively high temperatures, and demonstrate inferior catalytic activity during the reforming process. According to the literature, stainless steel foam could be a suitable choice. The stainless steel foam provides appropriate thermal properties at the described conditions \cite{Zhao2004, Smith2012}. The catalytic activity reported for the stainless steel is several orders of magnitude lower when compared with the conventional catalyst materials \cite{Hecht2005, Jones2008, Simson2009, Wang2020}. 
+
+The reactor's axial symmetry implies the application of the symmetry boundary condition at the symmetry axis \cite{Patankar1980}. The mathematical model can be simplified, relying on the assumption that transport and chemical phenomena occur in an identical manner around the reactor's axis. 
+
+
+%%%%%%%%%%%%%%%%%%%% NUMERICAL MODEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Integration of the Eq. \eqref{eq:general} over the control volumes, results in the discretized transport equation (Eq. \eqref{eq:int}). Due to the reactor's axial symmetry assumption, discretization is conducted by the application of the difference quotients appropriate for the two-dimensional analysis \cite{Patankar1981, Wendt2009}.
+
+\begin{eqnarray}
+\begin{multlined}
+\label{eq:int}
+\left[ \left( \varPsi_x \phi \right)_{\rm{e}} - \left( \varPsi_x \phi \right)_{\rm{w}} \right] r_{\rm{m}} \Delta r + \left[ \left( r \varPsi_r \phi \right)_{\rm{n}} - \left( r \varPsi_r \phi \right)_{\rm{s}} \right] \Delta x \\ 
+ = \left[ \left( \varGamma \dfrac{\partial \phi}{\partial x} \right)_{\rm{e}} - \left( \varGamma \dfrac{\partial \phi}{\partial x} \right)_{\rm{w}} \right] r_{\rm{m}} \Delta r + \left[ \left( r \varGamma \dfrac{\partial \phi}{\partial r} \right)_{\rm{n}} - \left( r \varGamma \dfrac{\partial \phi}{\partial r} \right)_{\rm{s}} \right] \Delta x  \\+ \overline{S} r_{\rm{m}} \Delta r \Delta x,
+\end{multlined}
+\end{eqnarray}
+\hspace{\fill}
+
+
+
 
 
