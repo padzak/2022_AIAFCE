@@ -568,6 +568,7 @@ All of the boundary conditions are summarized in Fig. \ref{fig:boundary}.
 \end{figure}
 
 \section{Genetic algorithm}
+\label{sec:ga}
 
 The conducted optimization includes the application of an evolutionary algorithm, to define the optimal design of the catalytic insert for the coaxial segments. The genetic algorithm (GA) is selected to be the optimization procedure used for the needs of the analysis. The algorithm analyses subsequent, finite populations of test specimens, which parameters are inherited from the specimens acquiring the best results in the preceding generation. The results are evaluated by user-defined fitness functions \cite{Tai2022}. The functions are exclusive to a certain problem. If more than one function is defined, the functions have to be combined into a single value, which will be further processed by the genetic algorithm itself \cite{Goldberg1989}. The remaining part of the genetic algorithm operation is the mutation procedure. The mutation is used as an additional procedure for preventing the local extremum trap and a measure for the introduction of genes that were not present in the initial population or are just not possible to acquire on the way of the crossover procedure \cite{Raja2017}. Coupling of the prepared numerical anlysis with the algorithm requires proper parametrization of reactor parameters \cite{Goldberg1989}. The catalyst insert is set to contain 5  coaxial segments. Each of the segments is assumed to consist of either a catalytic composite of nickel with yttria-stabilized-zirconia (Ni/YSZ) or a stainless steel foam \cite{Pajak2021IJHEa}. The insert regions may differ in their morphological parameters regardless of the constituting material. The parameters altered by the algorithm are segment catalytic character, porosity $\varepsilon$ and average pore diameter $d_{\rm{p}}$. The porosity values available for application in the analysis are constrained to the range between 0.5 and 0.8. The lower boundary is set at 0.5, as lower porosity values resulted in over-significant pressure drops during the preliminary calculations.  The choice of 0.8 as the upper boundary is motivated by lower accessibility to the manufacturing methods determined for metallic foams of higher porosities \cite{Banhart2001}.  The average pore diameters $d_{\rm{p}}$ are calculated for each segment, based on the values of the porosity \cite{Pajak2021IJHEa}. The upper boundary of the $d_{\rm{p}}$ range is restricted by the model conditions. According to the volume-averaging method, the size of a single pore is not allowed to exceed the size of a single numerical grid element. Therefore, the upper boundary is limited to 0.002 m \cite{Carbonell1984} Furthermore, segment porosity $\varepsilon$ has a direct influence on the catalyst density. The catalyst density $\dot{w}_{\rm{cat}}$ is calculated using Eq. \eqref{eq:cat_dens}:
 
@@ -630,649 +631,696 @@ f = \sum_{i = 1}^{N} w_{i}f_{i}.
 \noindent where $N$ represents the number of the specimens. The weights $w_{i}$ are established at 0.2, 0.4, 0.5, 0.6, and 0.8. Each of the analyses being carried out applied each of the weights to both of the fitness functions to allow the conduction of a sensitivity analysis, depending on the assumed importance of the defined fitness functions. The conducted numerical investigation includes a search for an optimal arrangement of coaxial segments, simultaneously performing a sensitivity analysis of the weights applied for the fitness calculation.
 
 \clearpage
+
+
+
+
+
+
+
+
 \section{Numerical analysis}
 \label{sec:num_analysis}
 
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{5seg.png}
-%\caption{\label{fig:5seg}Catalytic insert division strategy I}
-%\end{figure}
-%
-%
-%\paragraph{Thermal fitness 80 \%, methane conversion 20 \%} \hspace{0pt} \\
-%\noindent 
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/20C_80T/GEN1-TFIELD.png}
-%\caption{\label{fig:5R2080G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/20C_80T/GEN15-TFIELD.png}
-%\caption{\label{fig:5R2080G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/20C_80T/GEN30-TFIELD.png}
-%\caption{\label{fig:5R2080G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/20C_80T/GEN1-AVG.png}
-%\caption{\label{fig:5R2080G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/20C_80T/GEN15-AVG.png}
-%\caption{\label{fig:5R2080G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/20C_80T/GEN30-AVG.png}
-%\caption{\label{fig:5R2080G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5seg/20C80T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+The presented investigation regards the optimization of the temperature distribution inside the reforming reactor. Moderation of the temperature field is achieved via the introduction of the macro-patterning concept \cite{Pajak2018}. The concept predicts the modification of the catalytic insert of a reforming reactor, resulting in a change in the process conditions. The insert is divided into segments in the radial direction. Each segment may consist of catalytic Ni/YSZ or stainless steel foam. The algorithm conducts the search for an optimal composition of the insert, altering the percentage of the catalyst used, segments placement, and segments structural parameters.  The metallic foam is introduced to suppress the reforming reaction. A sensitivity analysis is conducted to specify the most suitable multiplication factors for the weighted-sum fitness calculation (Eq. \eqref{eq:fitness}) \cite{Davahli2022}. The computed fitness is used to rank the specimens in a single genetic algorithm's iteration. An analysis of the genetic algorithm behavior, depending on the weight applied to the two fitness functions is conducted, to define the most suitable approach to the issue, depending on the applied variant of the macro-patterning strategy. The analysis includes a comparison of results for five different sets of fitness weights, as follows:
+
+\begin{itemize}
+\item[1.] {$w_{\rm{CH_4}}  = 0.2$, $w_{T}  = 0.8$ }
+\item[2.] {$w_{\rm{CH_4}}  = 0.4$, $w_{T}  = 0.6$ }
+\item[3.] {$w_{\rm{CH_4}}  = 0.5$, $w_{T}  = 0.5$ }
+\item[4.] {$w_{\rm{CH_4}}  = 0.6$, $w_{T}  = 0.4$ }
+\item[5.] {$w_{\rm{CH_4}}  = 0.8$, $w_{T}  = 0.2$ }
+\end{itemize}
+
+The analysis has to be preceded by a definition of a reference case. A comparison of subsequent optimization results with the reference case will serve as a benchmark for defining if any significant improvement in the reaction conditions has been noted for a specific case. The reference case defined for the presented analysis is a conventional reforming reactor, with a catalytic insert being homogeneous and continuous throughout the whole volume of the reactor. The whole insert consists of a composite of nickel and yttrium-stabilized-zirconia (Ni/YSZ) with a ratio of 60:40. The porosity $\varepsilon$ of the reactor's catalyst is set at 50 \%, resulting in the catalyst density equal to 2.47 $\cdot$ 10$^6$ g m$^{-3}$. The average pore diameter $d_{\rm{p}}$ is established at 1.5 mm. The boundary conditions applied for the reference case are corresponding to the conditions set for the optimization procedure (Section \ref{sec:boundary}).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=190mm]{ref-Tfield.png}
+\caption{\label{fig:ref-TField} Temperature field distribution - reference case ($T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0, $\dot{w}_{\rm{cat}}$ = 2.47 $\cdot$ 10$^{6}$)}
+\end{figure}
+
+The thermal characteristics of the reforming reaction in a conventional reactor can be observed in Fig. \ref{fig:ref-TField}). The reactor dimensions are divided by the reactor's radius (5 mm), to acquire a dimensionless set of coordinates. Observable temperature gradients are present throughout the whole volume of the reactor. The most significant temperature drop can be noticed at the inlet of the reactor, due to a considerable amount of energy required for the activation of the reforming reaction \cite{Xu1989, Pajak2018}. The molar fractions of specimens taking part in the process are illustrated in Fig. \ref{fig:ref-avg}. The molar fractions are averaged over the reactor's radius. Thus, the graph describes the change of the radius-averaged molar fractions in the longitudinal direction of the reactor. The values of the reactor's length are divided by the reactor's radius, to acquire dimensionless values.  
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=100mm]{ref-avg.png}
+\caption{\label{fig:ref-avg} Radius-averaged molar fractions - reference case ($T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0, $\dot{w}_{\rm{cat}}$ = 2.47 $\cdot$ 10$^{6}$)}
+\end{figure}
+
+The final stage of the numerical analysis predicted the extension of the macro-patterning concept by division of the catalytic insert in the radial direction, forming coaxial segments. The radial segments may accommodate one of two possible configurations. The first variant predicts cylinders with equal width of the inlet surface (Catalyst insert division strategy I), while the second introduces cylinders with an equal area of the inlet surfaces (Catalyst insert division strategy II) (Fig. \ref{fig:segments}). To allow a direct comparison between each of the composed algorithms, hydrogen productivity $\zeta$ is introduced. Hydrogen productivity delivers insight into the increase of the effectiveness of the reforming reaction for each of the optimized specimens. The $\zeta$ parameter is an exact ratio of the hydrogen output and the amount of the applied catalyst $\iota$  for a specific reactor (Eq. \eqref{eq:h2cat}).  The amount of the catalyst $\iota$ is calculated as the ratio of the catalyst used in a specific reactor, to the amount of the catalyst applied for the reference case.
+ 
+ \begin{equation}
+ \label{eq:h2cat}
+ \zeta = \frac{\rm{H_{2_{out}}}}{\iota}
+  \end{equation}
+
+To deliver a comprehensive analysis of specific catalytic insert division strategies, a sensitivity analysis for each of them is conducted. The sensitivity analysis regards changing the weights $w_{\rm{CH_4}}$ and $w_T$ applied for specific fitness functions (Section \ref{chap:ga}).
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{5seg.png}
+\caption{\label{fig:5seg}Catalytic insert division strategy I}
+\end{figure}
+
+
+\paragraph{Thermal fitness 80 \%, methane conversion 20 \%} \hspace{0pt} \\
+\noindent 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/20C_80T/GEN1-TFIELD.png}
+\caption{\label{fig:5R2080G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/20C_80T/GEN15-TFIELD.png}
+\caption{\label{fig:5R2080G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/20C_80T/GEN30-TFIELD.png}
+\caption{\label{fig:5R2080G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/20C_80T/GEN1-AVG.png}
+\caption{\label{fig:5R2080G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/20C_80T/GEN15-AVG.png}
+\caption{\label{fig:5R2080G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/20C_80T/GEN30-AVG.png}
+\caption{\label{fig:5R2080G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5seg/20C80T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5/20C_80T.png}
 %\caption{\label{fig:5R2080G-fitness} Strategy I - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%
-%
-%\clearpage
-%
-%
-%
-%\paragraph{Thermal fitness 60 \%, methane conversion 40 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/40C_60T/GEN1-TFIELD.png}
-%\caption{\label{fig:5R4060G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/40C_60T/GEN15-TFIELD.png}
-%\caption{\label{fig:5R4060G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/40C_60T/GEN30-TFIELD.png}
-%\caption{\label{fig:5R4060G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/40C_60T/GEN1-AVG.png}
-%\caption{\label{fig:5R4060G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/40C_60T/GEN15-AVG.png}
-%\caption{\label{fig:5R4060G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/40C_60T/GEN30-AVG.png}
-%\caption{\label{fig:5R4060G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5seg/40C60T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+
+
+
+\clearpage
+
+
+
+\paragraph{Thermal fitness 60 \%, methane conversion 40 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/40C_60T/GEN1-TFIELD.png}
+\caption{\label{fig:5R4060G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/40C_60T/GEN15-TFIELD.png}
+\caption{\label{fig:5R4060G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/40C_60T/GEN30-TFIELD.png}
+\caption{\label{fig:5R4060G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/40C_60T/GEN1-AVG.png}
+\caption{\label{fig:5R4060G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/40C_60T/GEN15-AVG.png}
+\caption{\label{fig:5R4060G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/40C_60T/GEN30-AVG.png}
+\caption{\label{fig:5R4060G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5seg/40C60T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5/40C_60T.png}
 %\caption{\label{fig:5R4060G-fitness} Strategy I - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%
-%\clearpage
-%
-%
-%
-%
-%
-%\paragraph{Thermal fitness 50 \%, methane conversion 50 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/50C_50T/GEN1-TFIELD.png}
-%\caption{\label{fig:5R5050G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/50C_50T/GEN15-TFIELD.png}
-%\caption{\label{fig:5R5050G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/50C_50T/GEN30-TFIELD.png}
-%\caption{\label{fig:5R5050G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/50C_50T/GEN1-AVG.png}
-%\caption{\label{fig:5R5050G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/50C_50T/GEN15-AVG.png}
-%\caption{\label{fig:5R5050G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/50C_50T/GEN30-AVG.png}
-%\caption{\label{fig:5R5050G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5seg/50C50T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+
+
+\clearpage
+
+
+
+
+
+\paragraph{Thermal fitness 50 \%, methane conversion 50 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/50C_50T/GEN1-TFIELD.png}
+\caption{\label{fig:5R5050G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/50C_50T/GEN15-TFIELD.png}
+\caption{\label{fig:5R5050G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/50C_50T/GEN30-TFIELD.png}
+\caption{\label{fig:5R5050G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/50C_50T/GEN1-AVG.png}
+\caption{\label{fig:5R5050G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/50C_50T/GEN15-AVG.png}
+\caption{\label{fig:5R5050G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/50C_50T/GEN30-AVG.png}
+\caption{\label{fig:5R5050G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5seg/50C50T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5/50C_50T.png}
 %\caption{\label{fig:5R5050G-fitness} Strategy I - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%
-%\clearpage
-%
-%
-%
-%\paragraph{Thermal fitness 40 \%, methane conversion 60 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/60C_40T/GEN1-TFIELD.png}
-%\caption{\label{fig:5R6040G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/60C_40T/GEN15-TFIELD.png}
-%\caption{\label{fig:5R6040G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/60C_40T/GEN30-TFIELD.png}
-%\caption{\label{fig:5R6040G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/60C_40T/GEN1-AVG.png}
-%\caption{\label{fig:5R6040G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/60C_40T/GEN15-AVG.png}
-%\caption{\label{fig:5R6040G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/60C_40T/GEN30-AVG.png}
-%\caption{\label{fig:5R6040G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5seg/60C40T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+
+
+\clearpage
+
+
+
+\paragraph{Thermal fitness 40 \%, methane conversion 60 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/60C_40T/GEN1-TFIELD.png}
+\caption{\label{fig:5R6040G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/60C_40T/GEN15-TFIELD.png}
+\caption{\label{fig:5R6040G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/60C_40T/GEN30-TFIELD.png}
+\caption{\label{fig:5R6040G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/60C_40T/GEN1-AVG.png}
+\caption{\label{fig:5R6040G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/60C_40T/GEN15-AVG.png}
+\caption{\label{fig:5R6040G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/60C_40T/GEN30-AVG.png}
+\caption{\label{fig:5R6040G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5seg/60C40T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5/60C_40T.png}
 %\caption{\label{fig:5R6040G-fitness} Strategy I - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%\clearpage
-%
-%
-%\paragraph{Thermal fitness 20 \%, methane conversion 80 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/80C_20T/GEN1-TFIELD.png}
-%\caption{\label{fig:5R8020G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/80C_20T/GEN15-TFIELD.png}
-%\caption{\label{fig:5R8020G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5/80C_20T/GEN30-TFIELD.png}
-%\caption{\label{fig:5R8020G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/80C_20T/GEN1-AVG.png}
-%\caption{\label{fig:5R8020G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/80C_20T/GEN15-AVG.png}
-%\caption{\label{fig:5R8020G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5seg/80C20T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5/80C_20T/GEN30-AVG.png}
-%\caption{\label{fig:5R8020G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%The development of the fitness values among successive populations for strategy I is presented in Fig. \ref{fig:5R8020G-fitness}. 
-%
+
+\clearpage
+
+
+\paragraph{Thermal fitness 20 \%, methane conversion 80 \%} \hspace{0pt} \\
+\noindent 
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/80C_20T/GEN1-TFIELD.png}
+\caption{\label{fig:5R8020G1-TField} Strategy I - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/80C_20T/GEN15-TFIELD.png}
+\caption{\label{fig:5R8020G15-TField} Strategy I - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5/80C_20T/GEN30-TFIELD.png}
+\caption{\label{fig:5R8020G30-TField} Strategy I - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/80C_20T/GEN1-AVG.png}
+\caption{\label{fig:5R8020G1-avg} Strategy I - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/80C_20T/GEN15-AVG.png}
+\caption{\label{fig:5R8020G15-avg} Strategy I - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5seg/80C20T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy I - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5/80C_20T/GEN30-AVG.png}
+\caption{\label{fig:5R8020G30-avg} Strategy I - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+The development of the fitness values among successive populations for strategy I is presented in Fig. \ref{fig:5R8020G-fitness}. 
+
 %\begin{figure}
 %\centering
 %\includegraphics[width=100mm]{results/5/80C_20T.png}
 %\caption{\label{fig:5R8020G-fitness} Strategy I - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%To allow a straightforward comparison between the catalyst inserts division strategies, hydrogen productivity $\zeta$ is calculated for the optimal cases found by each algorithm. The hydrogen productivity is summarized in Table \ref{tab:5RH2prod}. 
-%
-%\begin{center}
-%\begin{table}
-%\centering
-%\caption{Hydrogen productivity for the catalytic insert division strategy I}
-%\label{tab:5RH2prod}
-%\begin{tabular}{l|c|c|c}
-%\hline\noalign{\smallskip}
-% $w_{\rm{CH_4}}$ / $ w_T $ & $\rm{H_{2_{out}}}$ & $\iota$ & $\zeta$ \\
-%\noalign{\smallskip}\hline\noalign{\smallskip}
-%REF         & 0.581     & 1.00  &  0.581\\
-%0.2 / 0.8   & 0.255     & 0.20  & 1.278 \\
-%0.4 / 0.6   & 0.268     & 0.19  & 1.398 \\
-%0.5 / 0.5   & 0.231     & 0.20  & 1.157 \\
-%0.6 / 0.4   & 0.407     & 0.45  & 0.900 \\
-%0.8 / 0.2   & 0.218     & 0.20  & 1.090 \\
-%\noalign{\smallskip}\hline
-%\end{tabular}
-%\end{table}
-%\end{center}
-%
-%
-%\clearpage
-%
-%
-%\subsection{Insert division strategy II}
-%\label{subsec:5RE}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{5segEqSurf.png}
-%\caption{\label{fig:5segEqSurf}Catalytic insert division strategy II}
-%\end{figure}
-%
-%
-%\paragraph{Thermal fitness 80 \%, methane conversion 20 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/20C_80T/GEN1-TFIELD.png}
-%\caption{\label{fig:5RES2080G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/20C_80T/GEN15-TFIELD.png}
-%\caption{\label{fig:5RES2080G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/20C_80T/GEN30-TFIELD.png}
-%\caption{\label{fig:5RES2080G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/20C_80T/GEN1-AVG.png}
-%\caption{\label{fig:5RES2080G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/20C_80T/GEN15-AVG.png}
-%\caption{\label{fig:5RES2080G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/20C_80T/GEN30-AVG.png}
-%\caption{\label{fig:5RES2080G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5segEq/20C80T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+
+To allow a straightforward comparison between the catalyst inserts division strategies, hydrogen productivity $\zeta$ is calculated for the optimal cases found by each algorithm. The hydrogen productivity is summarized in Table \ref{tab:5RH2prod}. 
+
+\begin{center}
+\begin{table}
+\centering
+\caption{Hydrogen productivity for the catalytic insert division strategy I}
+\label{tab:5RH2prod}
+\begin{tabular}{l|c|c|c}
+\hline\noalign{\smallskip}
+ $w_{\rm{CH_4}}$ / $ w_T $ & $\rm{H_{2_{out}}}$ & $\iota$ & $\zeta$ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+REF         & 0.581     & 1.00  &  0.581\\
+0.2 / 0.8   & 0.255     & 0.20  & 1.278 \\
+0.4 / 0.6   & 0.268     & 0.19  & 1.398 \\
+0.5 / 0.5   & 0.231     & 0.20  & 1.157 \\
+0.6 / 0.4   & 0.407     & 0.45  & 0.900 \\
+0.8 / 0.2   & 0.218     & 0.20  & 1.090 \\
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+
+\clearpage
+
+
+\subsection{Insert division strategy II}
+\label{subsec:5RE}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{5segEqSurf.png}
+\caption{\label{fig:5segEqSurf}Catalytic insert division strategy II}
+\end{figure}
+
+
+\paragraph{Thermal fitness 80 \%, methane conversion 20 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/20C_80T/GEN1-TFIELD.png}
+\caption{\label{fig:5RES2080G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/20C_80T/GEN15-TFIELD.png}
+\caption{\label{fig:5RES2080G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/20C_80T/GEN30-TFIELD.png}
+\caption{\label{fig:5RES2080G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/20C_80T/GEN1-AVG.png}
+\caption{\label{fig:5RES2080G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/20C_80T/GEN15-AVG.png}
+\caption{\label{fig:5RES2080G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/20C_80T/GEN30-AVG.png}
+\caption{\label{fig:5RES2080G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5segEq/20C80T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5Eq/20C_80T.png}
 %\caption{\label{fig:5RES2080G-fitness} Strategy II - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.2, w_T = 0.8$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%
-%
-%\clearpage
-%
-%
-%
-%\paragraph{Thermal fitness 60 \%, methane conversion 40 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/40C_60T/GEN1-TFIELD.png}
-%\caption{\label{fig:5RES4060G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/40C_60T/GEN15-TFIELD.png}
-%\caption{\label{fig:5RES4060G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/40C_60T/GEN30-TFIELD.png}
-%\caption{\label{fig:5RES4060G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/40C_60T/GEN1-AVG.png}
-%\caption{\label{fig:5RES4060G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/40C_60T/GEN15-AVG.png}
-%\caption{\label{fig:5RES4060G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/40C_60T/GEN30-AVG.png}
-%\caption{\label{fig:5RES4060G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5segEq/40C60T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+
+
+
+\clearpage
+
+
+
+\paragraph{Thermal fitness 60 \%, methane conversion 40 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/40C_60T/GEN1-TFIELD.png}
+\caption{\label{fig:5RES4060G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/40C_60T/GEN15-TFIELD.png}
+\caption{\label{fig:5RES4060G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/40C_60T/GEN30-TFIELD.png}
+\caption{\label{fig:5RES4060G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/40C_60T/GEN1-AVG.png}
+\caption{\label{fig:5RES4060G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/40C_60T/GEN15-AVG.png}
+\caption{\label{fig:5RES4060G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/40C_60T/GEN30-AVG.png}
+\caption{\label{fig:5RES4060G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5segEq/40C60T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5Eq/40C_60T.png}
 %\caption{\label{fig:5RES4060G-fitness} Strategy II - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.4, w_T = 0.6$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%
-%\clearpage
-%
-%
-%
-%
-%
-%\paragraph{Thermal fitness 50 \%, methane conversion 50 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/50C_50T/GEN1-TFIELD.png}
-%\caption{\label{fig:5RES5050G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/50C_50T/GEN15-TFIELD.png}
-%\caption{\label{fig:5RES5050G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/50C_50T/GEN30-TFIELD.png}
-%\caption{\label{fig:5RES5050G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/50C_50T/GEN1-AVG.png}
-%\caption{\label{fig:5RES5050G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/50C_50T/GEN15-AVG.png}
-%\caption{\label{fig:5RES5050G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/50C_50T/GEN30-AVG.png}
-%\caption{\label{fig:5RES5050G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5segEq/50C50T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
+
+
+\clearpage
+
+
+
+
+
+\paragraph{Thermal fitness 50 \%, methane conversion 50 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/50C_50T/GEN1-TFIELD.png}
+\caption{\label{fig:5RES5050G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/50C_50T/GEN15-TFIELD.png}
+\caption{\label{fig:5RES5050G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/50C_50T/GEN30-TFIELD.png}
+\caption{\label{fig:5RES5050G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/50C_50T/GEN1-AVG.png}
+\caption{\label{fig:5RES5050G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/50C_50T/GEN15-AVG.png}
+\caption{\label{fig:5RES5050G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/50C_50T/GEN30-AVG.png}
+\caption{\label{fig:5RES5050G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5segEq/50C50T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5Eq/50C_50T.png}
 %\caption{\label{fig:5RES5050G-fitness} Strategy II - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.5, w_T = 0.5$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%
-%\clearpage
-%
-%
-%
-%\paragraph{Thermal fitness 40 \%, methane conversion 60 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/60C_40T/GEN1-TFIELD.png}
-%\caption{\label{fig:5RES6040G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/60C_40T/GEN15-TFIELD.png}
-%\caption{\label{fig:5RES6040G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/60C_40T/GEN30-TFIELD.png}
-%\caption{\label{fig:5RES6040G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/60C_40T/GEN1-AVG.png}
-%\caption{\label{fig:5RES6040G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/60C_40T/GEN15-AVG.png}
-%\caption{\label{fig:5RES6040G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/60C_40T/GEN30-AVG.png}
-%\caption{\label{fig:5RES6040G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5segEq/60C40T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
+
+
+\clearpage
+
+
+
+\paragraph{Thermal fitness 40 \%, methane conversion 60 \%} \hspace{0pt} \\
+\noindent 
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/60C_40T/GEN1-TFIELD.png}
+\caption{\label{fig:5RES6040G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/60C_40T/GEN15-TFIELD.png}
+\caption{\label{fig:5RES6040G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/60C_40T/GEN30-TFIELD.png}
+\caption{\label{fig:5RES6040G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/60C_40T/GEN1-AVG.png}
+\caption{\label{fig:5RES6040G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/60C_40T/GEN15-AVG.png}
+\caption{\label{fig:5RES6040G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/60C_40T/GEN30-AVG.png}
+\caption{\label{fig:5RES6040G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5segEq/60C40T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5Eq/60C_40T.png}
 %\caption{\label{fig:5RES6040G-fitness} Strategy II - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.6, w_T = 0.4$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%\clearpage
-%
-%
-%\paragraph{Thermal fitness 20 \%, methane conversion 80 \%} \hspace{0pt} \\
-%\noindent 
-%
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/80C_20T/GEN1-TFIELD.png}
-%\caption{\label{fig:5RES8020G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/80C_20T/GEN15-TFIELD.png}
-%\caption{\label{fig:5RES8020G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=190mm]{results/5Eq/80C_20T/GEN30-TFIELD.png}
-%\caption{\label{fig:5RES8020G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/80C_20T/GEN1-AVG.png}
-%\caption{\label{fig:5RES8020G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/80C_20T/GEN15-AVG.png}
-%\caption{\label{fig:5RES8020G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=120mm]{results/segments/5segEq/80C20T/seg.png}
-%\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[width=80mm]{results/5Eq/80C_20T/GEN30-AVG.png}
-%\caption{\label{fig:5RES8020G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
-%\end{figure}
-%
-%
+
+\clearpage
+
+
+\paragraph{Thermal fitness 20 \%, methane conversion 80 \%} \hspace{0pt} \\
+\noindent 
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/80C_20T/GEN1-TFIELD.png}
+\caption{\label{fig:5RES8020G1-TField} Strategy II - Temperature field distribution - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/80C_20T/GEN15-TFIELD.png}
+\caption{\label{fig:5RES8020G15-TField} Strategy II - Temperature field distribution - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=190mm]{results/5Eq/80C_20T/GEN30-TFIELD.png}
+\caption{\label{fig:5RES8020G30-TField} Strategy II - Temperature field distribution - 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/80C_20T/GEN1-AVG.png}
+\caption{\label{fig:5RES8020G1-avg} Strategy II - Radius-averaged molar fractions - 1$^{\rm{st}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/80C_20T/GEN15-AVG.png}
+\caption{\label{fig:5RES8020G15-avg} Strategy II - Radius-averaged molar fractions - 15$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{results/segments/5segEq/80C20T/seg.png}
+\caption{\label{fig:30L6040G1-TField} Strategy II - Segments distribution for 30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=80mm]{results/5Eq/80C_20T/GEN30-AVG.png}
+\caption{\label{fig:5RES8020G30-avg} Strategy II - Radius-averaged molar fractions -  30$^{\rm{th}}$ generation ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
+\end{figure}
+
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=100mm]{results/5Eq/80C_20T.png}
 %\caption{\label{fig:5RES8020G-fitness} Strategy II - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
-%
-%\begin{center}
-%\begin{table}
-%\centering
-%\caption{Hydrogen productivity for the catalytic insert division strategy II}
-%\label{tab:5RH2prod}
-%\begin{tabular}{l|c|c|c}
-%\hline\noalign{\smallskip}
-% $w_{\rm{CH_4}}$ / $ w_T $ & $\rm{H_{2_{out}}}$ & $\iota$ & $\zeta$ \\
-%\noalign{\smallskip}\hline\noalign{\smallskip}
-%REF         & 0.581     & 1.00  &  0.581\\
-%0.2 / 0.8   & 0.001     & 0.00  & N / A \\
-%0.4 / 0.6   & 0.492     & 0.32  & 1.527 \\
-%0.5 / 0.5   & 0.175     & 0.32  & 0.548 \\
-%0.6 / 0.4   & 0.536     & 0.53  & 1.616 \\
-%0.8 / 0.2   & 0.200     & 0.27  & 0.744 \\
-%\noalign{\smallskip}\hline
-%\end{tabular}
-%\end{table}
-%\end{center}
+
+\begin{center}
+\begin{table}
+\centering
+\caption{Hydrogen productivity for the catalytic insert division strategy II}
+\label{tab:5RH2prod}
+\begin{tabular}{l|c|c|c}
+\hline\noalign{\smallskip}
+ $w_{\rm{CH_4}}$ / $ w_T $ & $\rm{H_{2_{out}}}$ & $\iota$ & $\zeta$ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+REF         & 0.581     & 1.00  &  0.581\\
+0.2 / 0.8   & 0.001     & 0.00  & N / A \\
+0.4 / 0.6   & 0.492     & 0.32  & 1.527 \\
+0.5 / 0.5   & 0.175     & 0.32  & 0.548 \\
+0.6 / 0.4   & 0.536     & 0.53  & 1.616 \\
+0.8 / 0.2   & 0.200     & 0.27  & 0.744 \\
+\noalign{\smallskip}\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\clearpage
+
 
 \section{Conclusions}
 
@@ -1285,7 +1333,7 @@ The conducted numerical investigation regards radial segmentation of the catalys
 \item[4.] The introduction of the macro-patterning concept is proven to enhance the effectiveness of the reforming reaction. The hydrogen productivity is almost tripled for the best solution when compared with the reference case.
 \end{itemize}
 
-The conducted research indicates the influence of altering the steam reforming thermal conditions on the overall process proceeding. The possible improvement of the process effectiveness on the unification of the temperature distribution is confirmed. The proposed macro-patterning concept proves the possibility of acquiring even higher methane conversion rates, using the same amount of catalyst as in the case of the reference case. However, the macro-patterned reactors would have to suffer in the compactness, as to acquire the exact level of conversion, a slight extension of their dimensions is required. The enlargement of the reactors is whatsoever not a tremendous drawback, when considering the possible elongation of the unit's lifetime, due to the reduction of the thermal stresses magnitude. 
+The conducted research indicates the influence of altering the steam reforming thermal conditions on the overall process proceeding. The possible improvement of the process effectiveness on the unification of the temperature distribution is confirmed. The proposed macro-patterning concept proves the possibility of acquiring even higher methane conversion rates, using the same amount of catalyst as in the case of the reference case. However, the macro-patterned reactor would have to suffer in the compactness, as to acquire the exact level of conversion, an extension of its dimensions is required. Considering the magnitude of possible economical benefits, an enlargement to a certain extent is acceptable. 
 
 \clearpage
 
