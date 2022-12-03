@@ -159,7 +159,7 @@ Hydrogen technologies are one of the promising directions of the clean energy se
 \section{Mathematical model}
 \label{sec:math_model}
 
-The reactor geometry is designed to allow modification of the insert in a real-life scenario. The analyzed process incorporates a plug-flow reactor, maintaining axial symmetry throughout its whole volume. The reactor consists of a straight, cylindrical pipe, allowing for an accessible replacement of the catalyst insert when required.  The introduced macro-patterning strategy predicts modification of the catalyst insert's morphology and its partial substitution with a non-catalytic material. Substitution of the catalyst material serves to enhance the heat transfer inside the reactor \cite{Pajak2018}. Metallic foams are chosen for application to the indicated issues \cite{Boomsma2003}. To provide a relevant measure for altering the temperature distribution inside the reactor, the catalyst insert is divided into segments. Each segment may consist of a catalyst or a non-catalytic material, with their morphological parameters individually assigned. The insert's segmentation is carried out according to two separate strategies. The first strategy predicts division in the radial direction with maintaining a constant width of inlet surfaces of each cylinder (Fig. \ref{fig:segments} b)). The second strategy predicts the application of segments with an identical area of the inlet surfaces for each of the coaxial cylinders (Fig. \ref{fig:segments} c)). The design is prepared to contain exclusively simple geometrical shapes, allowing to maintain an insignificant computational complexity of the domain \cite{Kaw2011}.  
+The analyzed process incorporates a plug-flow reactor, maintaining axial symmetry throughout its whole volume. The reactor consists of a straight, cylindrical pipe, allowing for an accessible replacement of the catalyst insert when required.  The introduced macro-patterning strategy predicts modification of the catalyst insert's morphology and its partial substitution with a non-catalytic material. Substitution of the catalyst material serves to enhance the heat transfer inside the reactor \cite{Pajak2018}. Metallic foams are chosen for application to the indicated issues \cite{Boomsma2003}. To provide a relevant measure for altering the temperature distribution inside the reactor, the catalyst insert is divided into segments. Each segment may consist of a catalyst or a non-catalytic material, with their morphological parameters individually assigned. The insert's segmentation is carried out according to two separate strategies. The first strategy predicts division in the radial direction with maintaining a constant width of inlet surfaces of each cylinder (Fig. \ref{fig:segments} b)). The second strategy predicts the application of segments with an identical area of the inlet surfaces for each of the coaxial cylinders (Fig. \ref{fig:segments} c)). The design is prepared to contain exclusively simple geometrical shapes, allowing to maintain an insignificant computational complexity of the domain \cite{Kaw2011}.  
 
 \begin{figure}[h]
 \centering
@@ -188,7 +188,7 @@ The process is assumed to be dominated by three reactions, as reported in litera
 {\Delta H_{\rm{WGS}} = -41.15 \rm{\frac{kJ}{mol}}.}
 \end{multline}
 
- The reformer is supplied with a mixture of H$_2$, CO$_2$, and CH$_4$. The composition of the feedstock is determined the steam-to-carbon ratio ($SC$) parameter, defining the ratio of steam to methane provided at the reactor's inlet. The process conditions are remarkably influenced by the $SC$ value, as the reactions' rates depend directly on the composition of the inlet gases \cite{Usman2015}. A proper setting of the $SC$ is crucial for the prevention of the carbon deposition phenomenon \cite{Koncewicz2021}. Adverse process conditions can result in carbon particles precipitating on the catalyst surface \cite{Kaczmarczyk2021}. A proper setting of the ratios and the process' temperature are proven to have the most significant influence on the alleviation of the poisoning hazard \cite{Tomiczek2017}. The enthalpy changes $\Delta H$ are taken from literature \cite{Pajak2018, Mazhar2021}. Knowledge of their rates is essential to allow the inclusion of the reactions into the model. According to the research conducted by Brus et al. \cite{Brus2012}, the effective rate of MSR and DRY reactions can be expressed with a common equation:
+The reformer is supplied with a mixture of H$_2$, CO$_2$, and CH$_4$. The composition of the feedstock is determined by the steam-to-carbon ratio ($SC$) parameter, defining the ratio of steam to methane provided at the reactor's inlet. The process conditions are remarkably influenced by the $SC$ value, as the reactions' rates depend directly on the composition of the inlet gases \cite{Usman2015}. A proper setting of the $SC$ is crucial for the prevention of the carbon deposition phenomenon \cite{Koncewicz2021}. Adverse process conditions can result in carbon particles precipitating on the catalyst surface \cite{Kaczmarczyk2021}. A proper setting of the ratios and the process' temperature are proven to have the most significant influence on the alleviation of the poisoning hazard \cite{Tomiczek2017}. The enthalpy changes $\Delta H$ are taken from literature \cite{Pajak2018, Mazhar2021}. Knowledge of their rates is essential to allow the inclusion of the reactions into the model. According to the research conducted by Brus et al. \cite{Brus2012}, the effective rate of MSR and DRY reactions can be expressed with a common equation:
 
 \begin{equation}
 \label{eq:rate_eff}
@@ -519,7 +519,7 @@ r$_5$ & 5 & 5 \\
 
 \end{table}
 
-The computational domain is indicated with the red dashed line (Fig. \ref{fig:comp_domain}). Segments can be described with the following parameters - porosity, average pore size, as well as their catalytic properties, which are directly correlated to the porosity value. The analyzed model is steady and the flow of gases is assumed to be laminar and occurring in one direction. Fluids taking part in the process are assumed to be Newtonian. The presented numerical analysis is a quasi-three-dimensional case. Due to the axial symmetry of the reactor's tube, a computational domain can be constrained to a two-dimensional cross-section of the reformer. Implementation of proper boundary conditions allows assuming the process occurs in the same manner throughout the reactor's whole volume \cite{Patankar1980}. 
+The computational domain is indicated with the red dashed line (Fig. \ref{fig:comp_domain}). Segments are parametrized with porosity, average pore size, and catalytic properties. The analyzed model is steady and the flow of gases is assumed to be laminar and occurring in one direction. Fluids taking part in the process are assumed to be Newtonian. The presented numerical analysis is a quasi-three-dimensional case. Due to the axial symmetry of the reactor's tube, a computational domain can be constrained to a two-dimensional cross-section of the reformer. Implementation of proper boundary conditions allows assuming the process occurs in the same manner throughout the reactor's whole volume \cite{Patankar1980}. 
 
 
 \begin{figure}[h]
@@ -531,7 +531,7 @@ The computational domain is indicated with the red dashed line (Fig. \ref{fig:co
 \subsection{Boundary Conditions and Materials}
 \label{sec:boundary}
 
-To complete the preparation of the numerical analysis, setting the properties of the materials and the boundary conditions is vital. Proper setting of $\textit{SC}$ value is essential for this analysis, due to the threat of carbon deposit formation \cite{Bartholomew1982}. If the ratios are chosen incorrectly, the carbon deposition phenomenon may occur, poisoning the reactor's catalyst \cite{Lakhapatri2009}. Choosing an appropriate steam-to-carbon ratio allows for avoiding the described hazard. The value of \textit{SC} for this analysis was set to be equal to 2.0 [-], preventing this occurrence \cite{Brus2015, Tomiczek2017}. The catalyst insert's segments are assumed to consist of one of two materials. The first material is a catalytic composite of nickel and yttria-stabilized-zirconia (Ni/YSZ). The second material, serving the purpose of heat transport medium, is chosen to be steel foam. The metallic foam segments are introduced for the unification of the temperature distribution inside the reactor.  Suppression of the reforming reaction, combined with a considerable heat exchange surface for foams, is expected to let the gases mixture reheat effectively \cite{Zhao2012}. The value of $\lambda_{\rm{solid}}$ is set at 22 W m$^{-1}$ K$^{-1}$ for the catalytic material \cite{Kawashima1996}, while the value of $\lambda_{\rm{solid}}$ for the steel foam is established at 30 W m$^{-1}$ K$^{-1}$ \cite{Peet2011}. The dimensionless cubic node length $e$ is set to be equal to 0.0339, as explained by Boomsma and Poulikakos \cite{Boomsma2001}.  The temperature of the fuel flowing inside the unit is considered to reach the temperature of the reformer instantly. The symmetry boundary conditions are set at the symmetry axis, while the no-slip boundary condition is applied at the wall of the reformer. The boundary conditions necessary for the solution of the governing equations are summarized below.
+To complete the preparation of the numerical analysis, setting the properties of the materials and the boundary conditions is vital. Proper setting of $\textit{SC}$ value is essential for this analysis, due to the threat of carbon deposit formation \cite{Bartholomew1982}. If the ratios are chosen incorrectly, the carbon deposition phenomenon may occur, poisoning the reactor's catalyst \cite{Lakhapatri2009}. Choosing an appropriate steam-to-carbon ratio allows for avoiding the described hazard. The value of \textit{SC} for this analysis was set to be equal to 2.0 [-], preventing this occurrence \cite{Brus2015, Tomiczek2017}. The catalyst insert's segments are assumed to consist of one of two materials. The first material is a catalytic composite of nickel and yttria-stabilized zirconia (Ni/YSZ). The second material, serving the purpose of heat transport medium, is chosen to be steel foam. The metallic foam segments are introduced for the unification of the temperature distribution inside the reactor.  Suppression of the reforming reaction, combined with a considerable heat exchange surface for foams, is expected to let the gases mixture reheat effectively \cite{Zhao2012}. The value of $\lambda_{\rm{solid}}$ is set at 22 W m$^{-1}$ K$^{-1}$ for the catalytic material \cite{Kawashima1996}, while the value of $\lambda_{\rm{solid}}$ for the steel foam is established at 30 W m$^{-1}$ K$^{-1}$ \cite{Peet2011}. The dimensionless cubic node length $e$ is set to be equal to 0.0339, as explained by Boomsma and Poulikakos \cite{Boomsma2001}.  The temperature of the fuel flowing inside the unit is considered to reach the temperature of the reformer instantly. The symmetry boundary conditions are set at the symmetry axis, while the no-slip boundary condition is applied at the wall of the reformer. The boundary conditions necessary for the solution of the governing equations are summarized below.
 
 \subsection*{Thermal Boundary Conditions}
 \begin{itemize}
@@ -541,7 +541,7 @@ To complete the preparation of the numerical analysis, setting the properties of
   \item wall heat flux $\partial T / \partial r =  const$ \hspace*{\fill} \hfill at $0 \leq x < L$ and $r = R$.
 \end{itemize}
 
-The thermal boundary condition set at the reactor's wall is chosen to be of a second type. Constant heat flux is assumed on the reactor's wall, and the wall itself is the medium for heat exchange between the reactor and the system boundaries. The wall thickness is set to be equal to 0.001 m and is assumed to consist of the same material as the metallic foams. Thus, the value of $\lambda_{\rm{solid}}$ for the reactor's wall is equal to  30 W m$^{-1}$ K$^{-1}$ \cite{Peet2011}. The boundary conditions essential for the calculation of the species conservation equations are presented below. 
+Constant heat flux is assumed on the reactor's wall, and the wall itself is the medium for heat exchange between the reactor and the system boundaries. The wall thickness is equal to 0.001 m and consists of the same material as the metallic foams. The value of $\lambda_{\rm{solid}}$ for the reactor's wall is equal to  30 W m$^{-1}$ K$^{-1}$ \cite{Peet2011}. The boundary conditions essential for the calculation of the species conservation equations are presented below. 
 
 \subsection*{Mass Transport Boundary Conditions}
 \begin{itemize}
@@ -572,7 +572,7 @@ All of the boundary conditions are summarized in Fig. \ref{fig:boundary}.
 \section{Genetic algorithm}
 \label{sec:ga}
 
-The conducted optimization includes the application of an evolutionary algorithm, to define the optimal design of the catalytic insert for the coaxial segments. The genetic algorithm (GA) is selected to be the optimization procedure used for the needs of the analysis. The algorithm analyses subsequent, finite populations of test specimens, which parameters are inherited from the specimens acquiring the best results in the preceding generation. The results are evaluated by user-defined fitness functions \cite{Tai2022}. The functions are exclusive to a certain problem. If more than one function is defined, the functions have to be combined into a single value, which will be further processed by the genetic algorithm itself \cite{Goldberg1989}. The remaining part of the genetic algorithm operation is the mutation procedure. The mutation is used as an additional procedure for preventing the local extremum trap and a measure for the introduction of genes that were not present in the initial population or are just not possible to acquire on the way of the crossover procedure \cite{Raja2017}. Coupling of the prepared numerical anlysis with the algorithm requires proper parametrization of reactor parameters \cite{Goldberg1989}. The catalyst insert is set to contain 5  coaxial segments. Each of the segments is assumed to consist of either a catalytic composite of nickel with yttria-stabilized-zirconia (Ni/YSZ) or a stainless steel foam \cite{Pajak2021IJHEa}. The insert regions may differ in their morphological parameters regardless of the constituting material. The parameters altered by the algorithm are segment catalytic character, porosity $\varepsilon$ and average pore diameter $d_{\rm{p}}$. The porosity values available for application in the analysis are constrained to the range between 0.5 and 0.8. The lower boundary is set at 0.5, as lower porosity values resulted in over-significant pressure drops during the preliminary calculations.  The choice of 0.8 as the upper boundary is motivated by lower accessibility to the manufacturing methods determined for metallic foams of higher porosities \cite{Banhart2001}.  The average pore diameters $d_{\rm{p}}$ are calculated for each segment, based on the values of the porosity \cite{Pajak2021IJHEa}. The upper boundary of the $d_{\rm{p}}$ range is restricted by the model conditions. According to the volume-averaging method, the size of a single pore is not allowed to exceed the size of a single numerical grid element. Therefore, the upper boundary is limited to 0.002 m \cite{Carbonell1984} Furthermore, segment porosity $\varepsilon$ has a direct influence on the catalyst density. The catalyst density $\dot{w}_{\rm{cat}}$ is calculated using Eq. \eqref{eq:cat_dens}:
+The conducted optimization includes the application of an evolutionary algorithm, to define the optimal design of the catalytic insert for the coaxial segments. The genetic algorithm (GA) is selected to be the optimization procedure used for the needs of the analysis. The algorithm analyses subsequent, finite populations of test specimens, which parameters are inherited from the specimens acquiring the best results in the preceding generation. The results are evaluated by user-defined fitness functions \cite{Tai2022}. The functions are exclusive to a certain problem. If more than one function is defined, the functions have to be combined into a single value, which will be further processed by the genetic algorithm itself \cite{Goldberg1989}. The remaining part of the genetic algorithm operation is the mutation procedure. The mutation is used as an additional procedure for preventing the local extremum trap and a measure for the introduction of genes that were not present in the initial population or are just not possible to acquire on the way of the crossover procedure \cite{Raja2017}. Coupling of the prepared numerical analysis with the algorithm requires proper parametrization of reactor parameters \cite{Goldberg1989}. The catalyst insert is set to contain 5  coaxial segments. Each of the segments is assumed to consist of either a catalytic composite of nickel with yttria-stabilized zirconia (Ni/YSZ) or a stainless steel foam \cite{Pajak2021IJHEa}. The insert regions may differ in their morphological parameters regardless of the constituting material. The parameters altered by the algorithm are segment catalytic character, porosity $\varepsilon$ and average pore diameter $d_{\rm{p}}$. The porosity values available for application in the analysis are constrained to the range between 0.5 and 0.8. The lower boundary is set at 0.5, as lower porosity values resulted in over-significant pressure drops during the preliminary calculations.  The choice of 0.8 as the upper boundary is motivated by lower accessibility to the manufacturing methods determined for metallic foams of higher porosities \cite{Banhart2001}.  The average pore diameters $d_{\rm{p}}$ are calculated for each segment, based on the values of the porosity \cite{Pajak2021IJHEa}. The upper boundary of the $d_{\rm{p}}$ range is restricted by the model conditions. According to the volume-averaging method, the size of a single pore is not allowed to exceed the size of a single numerical grid element. Therefore, the upper boundary is limited to 0.002 m \cite{Carbonell1984} Furthermore, segment porosity $\varepsilon$ has a direct influence on the catalyst density. The catalyst density $\dot{w}_{\rm{cat}}$ is calculated using Eq. \eqref{eq:cat_dens}:
 
 \begin{equation}
 \label{eq:cat_dens}
@@ -630,11 +630,8 @@ f_T = 1 - \frac{\Delta T}{\Delta T_{\rm{max}}},
 f = \sum_{i = 1}^{N} w_{i}f_{i}.
 \end{equation}
 
-\noindent where $N$ represents the number of the specimens. The weights $w_{i}$ are established at 0.2, 0.4, 0.5, 0.6, and 0.8. Each of the analyses being carried out applied each of the weights to both of the fitness functions to allow the conduction of a sensitivity analysis, depending on the assumed importance of the defined fitness functions. The conducted numerical investigation includes a search for an optimal arrangement of coaxial segments, simultaneously performing a sensitivity analysis of the weights applied for the fitness calculation.
-
+\noindent where $N$ represents the number of the specimens. The weights $w_{i}$ are established at 0.2, 0.4, 0.5, 0.6, and 0.8. The weights are applied to both of the fitness functions to conduct a sensitivity analysis, depending on the assumed importance of each. 
 \clearpage
-
-
 
 
 
@@ -666,11 +663,11 @@ The thermal characteristics of the reforming reaction in a conventional reactor 
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=100mm]{ref-avg.png}
+\includegraphics[width=80mm]{ref-avg.png}
 \caption{\label{fig:ref-avg} Radius-averaged molar fractions - reference case ($T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0, $\dot{w}_{\rm{cat}}$ = 2.47 $\cdot$ 10$^{6}$)}
 \end{figure}
 
-The final stage of the numerical analysis predicted the extension of the macro-patterning concept by division of the catalytic insert in the radial direction, forming coaxial segments. The radial segments may accommodate one of two possible configurations. The first variant predicts cylinders with equal width of the inlet surface (Catalyst insert division strategy I), while the second introduces cylinders with an equal area of the inlet surfaces (Catalyst insert division strategy II) (Fig. \ref{fig:segments}). To allow a direct comparison between each of the composed algorithms, hydrogen productivity $\zeta$ is introduced. Hydrogen productivity delivers insight into the increase of the effectiveness of the reforming reaction for each of the optimized specimens. The $\zeta$ parameter is an exact ratio of the hydrogen output and the amount of the applied catalyst $\iota$  for a specific reactor (Eq. \eqref{eq:h2cat}).  The amount of the catalyst $\iota$ is calculated as the ratio of the catalyst used in a specific reactor, to the amount of the catalyst applied for the reference case.
+The coaxial segments may accommodate one of two possible configurations. The first variant predicts cylinders with equal width of the inlet surface (Catalyst insert division strategy I), while the second introduces cylinders with an equal area of the inlet surfaces (Catalyst insert division strategy II) (Fig. \ref{fig:segments}). To allow a direct comparison between each of the composed algorithms, hydrogen productivity $\zeta$ is introduced. Hydrogen productivity delivers insight into the increase of the effectiveness of the reforming reaction for each of the optimized specimens. The $\zeta$ parameter is an exact ratio of the hydrogen output and the amount of the applied catalyst $\iota$  for a specific reactor (Eq. \eqref{eq:h2cat}).  The amount of the catalyst $\iota$ is calculated as the ratio of the catalyst used in a specific reactor, to the amount of the catalyst applied for the reference case.
  
  \begin{equation}
  \label{eq:h2cat}
@@ -679,9 +676,11 @@ The final stage of the numerical analysis predicted the extension of the macro-p
 
 A sensitivity analysis for each of them is conducted to deliver a comprehensive analysis of specific catalytic insert division strategies. The sensitivity analysis regards changing the weights $w_{\rm{CH_4}}$ and $w_T$ applied for specific fitness functions (Section \ref{sec:ga}).
 
+\subsection{Catalytic insert division strategy I}
+
 \begin{figure}[h!]
 \centering
-\includegraphics[width=120mm]{5seg.png}
+\includegraphics[width=120mm]{5seg.eps}
 \caption{\label{fig:5seg}Catalytic insert division strategy I}
 \end{figure}
 
@@ -1008,7 +1007,7 @@ A sensitivity analysis for each of them is conducted to deliver a comprehensive 
 \end{figure}
 
 
-The development of the fitness values among successive populations for the strategy I is presented in Fig. \ref{fig:5R8020G-fitness}. 
+%The development of the fitness values among successive populations for the strategy I is presented in Fig. \ref{fig:5R8020G-fitness}. 
 
 %\begin{figure}
 %\centering
@@ -1042,12 +1041,12 @@ REF         & 0.581     & 1.00  &  0.581\\
 \clearpage
 
 
-\subsection{Insert division strategy II}
+\subsection{Catalytic insert division strategy II}
 \label{subsec:5RE}
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=120mm]{5segEqSurf.png}
+\includegraphics[width=120mm]{5segEqSurf.eps}
 \caption{\label{fig:5segEqSurf}Catalytic insert division strategy II}
 \end{figure}
 
@@ -1378,11 +1377,14 @@ REF         & 0.581     & 1.00  &  0.581\\
 %\caption{\label{fig:5RES8020G-fitness} Strategy II - Fitness analysis throughout successive populations ($w_{\rm{CH_4}} = 0.8, w_T = 0.2$, $T_{\rm{in}}$ = 900 K, $u_{\rm{in}}$ = 0.15 m s$^{-1}$, $SC$ = 2.0)}
 %\end{figure}
 
+The hydrogen productivity acquired for optimal specimens included in the analysis of strategy II is summarized in Table \ref{tab:5REqH2prod}. 
+
+
 \begin{center}
 \begin{table}
 \centering
 \caption{Hydrogen productivity for the catalytic insert division strategy II}
-\label{tab:5RH2prod}
+\label{tab:5REqH2prod}
 \begin{tabular}{l|c|c|c}
 \hline\noalign{\smallskip}
  $w_{\rm{CH_4}}$ / $ w_T $ & $\rm{H_{2_{out}}}$ & $\iota$ & $\zeta$ \\
